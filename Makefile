@@ -12,7 +12,7 @@ OPTIONS = OptionList.o
 OBJS = $(ARRAY) $(OPTIONS)
 
 laplace:	laplace.o $(OBJS)
-		$(LINK.cc) -o laplace laplace.o $(OBJS) $(LIBS)
+		$(LINK.cc) -o ./bin/laplace laplace.o $(OBJS) $(LIBS)
 
 laplace.o:	laplace.C Array.h OptionList.h 
 Array.o:	Array.C Array.h
