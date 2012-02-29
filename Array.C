@@ -8,6 +8,7 @@ using std::endl;
 using std::hex;
 using std::dec;
 
+#include <string.h>
 #include <string>
 
 #include "Array.h"

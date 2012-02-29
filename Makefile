@@ -6,17 +6,11 @@ CXX = g++
 CXXFLAGS += -fopenmp
 
 LIBS =
-ARRAY = Array.o
-OPTIONS = OptionList.o
-
-OBJS = $(ARRAY) $(OPTIONS)
 
 laplace:	laplace.o $(OBJS)
-		$(LINK.cc) -o ./bin/laplace laplace.o $(OBJS) $(LIBS)
+		$(LINK.cc) -o ./bin/laplace laplace.o $(LIBS)
 
-laplace.o:	laplace.C Array.h OptionList.h 
-Array.o:	Array.C Array.h
-OptionList.o:	OptionList.C OptionList.h
+laplace.o:	laplace.C 
 
 clean:
 	rm -rf core *.o *~

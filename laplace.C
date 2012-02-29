@@ -8,11 +8,9 @@
 #include <iostream>
 using std::cout;
 using std::endl;
-
+#include <stdio.h>
 #include <omp.h>
-
-#include "Array.h"
-#include "OptionList.h"
+#include <stdlib.h>
 
 #define HI_TEMP 100.0
 #define LO_TEMP 0.0
@@ -21,14 +19,13 @@ void output(double** array, int nx, int ny);
 
 // Global vars, set by command line options
 
-int nx;			// number of points, x dimension
-int ny;			// number of points, y dimension
-double eps;		// epsilon (stopping condition)
-int np;			// number of processors
+int nx=10;			// number of points, x dimension
+int ny=10;			// number of points, y dimension
+double eps=1.0;		// epsilon (stopping condition)
+int np=1;			// number of processors
 
 int main(int argc, char *argv[]) {
-  OptionList opt(argc,argv);
-
+  /*
   nx = opt.getInt("nx",10);
   ny = opt.getInt("ny",10);
   eps = opt.getDouble("eps",1.0);
@@ -41,7 +38,7 @@ int main(int argc, char *argv[]) {
   cout << "ny = " << ny << ";" << endl;
   cout << "eps = " << eps << ";" << endl;
   cout << "np = " << np << ";" << endl;
-
+  */
   // your code here
 
   double **g,**h; //we will read from h and operate on g
