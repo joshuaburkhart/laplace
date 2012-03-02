@@ -17,29 +17,41 @@ using std::endl;
 
 void output(double** array, int nx, int ny);
 
-// Global vars, set by command line options
+int main(int argc, char *argv[])
+{
+  //defaults
+  int nx=10;			// number of points, x dimension
+  int ny=10;			// number of points, y dimension
+  double eps=1.0;		// epsilon (stopping condition)
+  int fx=9;			// fin width, x dimension
+  int fy=1;			// fin width, y dimension
+  int fg=1;			// gap between adjacent fins
+  int bh=1;			// base height
 
-int nx=10;			// number of points, x dimension
-int ny=10;			// number of points, y dimension
-double eps=1.0;		// epsilon (stopping condition)
-int np=1;			// number of processors
-
-int main(int argc, char *argv[]) {
-  /*
-  nx = opt.getInt("nx",10);
-  ny = opt.getInt("ny",10);
-  eps = opt.getDouble("eps",1.0);
-  np = opt.getInt("np",1);
-
-  // print the values of runtime parameters in a format that
-  // can be loaded into R
-
-  cout << "nx = " << nx << ";" << endl;
-  cout << "ny = " << ny << ";" << endl;
-  cout << "eps = " << eps << ";" << endl;
-  cout << "np = " << np << ";" << endl;
-  */
-  // your code here
+  //parsing args
+  for(int i=0;i<argc;i++){
+    if(0==strcmp(argv[i],"-nx"){
+      nx=atoi(argv[i+1]);
+    }
+    else if(0==strcmp(argv[i],"-ny"){
+      ny=atoi(argv[i+1]);
+    }
+    else if(0==strcmp(argv[i],"-eps"){
+      eps=(double) atof(argv[i+1]);
+    }
+    else if(0==strcmp(argv[i],"-fx"){
+      fx=atoi(argv[i+1]);
+    }
+    else if(0==strcmp(argv[i],"-fy"){
+      fy=atoi(argv[i+1]);
+    }
+    else if(0==strcmp(argv[i],"-fg"){
+      fg=atoi(argv[i+1]);
+    }
+    else if(0==strcmp(argv[i],"-bh"){
+      bh=atoi(argv[i+1]);
+    }
+  }
 
   double **g,**h; //we will read from h and operate on g
   g = (double **) malloc(ny*sizeof(double*));
