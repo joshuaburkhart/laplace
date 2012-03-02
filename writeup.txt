@@ -1,0 +1,8 @@
+Joshua Burkhart
+3/5/2012
+Dr. John Conery
+CIS 455/555
+
+Project 3: Laplace
+
+-- it seems we may want additional R packages installed on ACISS to enable 3d visualization
