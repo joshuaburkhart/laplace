@@ -30,25 +30,25 @@ int main(int argc, char *argv[])
 
   //parsing args
   for(int i=0;i<argc;i++){
-    if(0==strcmp(argv[i],"-nx"){
+    if(0==strcmp(argv[i],"-nx")){
       nx=atoi(argv[i+1]);
     }
-    else if(0==strcmp(argv[i],"-ny"){
+    else if(0==strcmp(argv[i],"-ny")){
       ny=atoi(argv[i+1]);
     }
-    else if(0==strcmp(argv[i],"-eps"){
+    else if(0==strcmp(argv[i],"-eps")){
       eps=(double) atof(argv[i+1]);
     }
-    else if(0==strcmp(argv[i],"-fx"){
+    else if(0==strcmp(argv[i],"-fx")){
       fx=atoi(argv[i+1]);
     }
-    else if(0==strcmp(argv[i],"-fy"){
+    else if(0==strcmp(argv[i],"-fy")){
       fy=atoi(argv[i+1]);
     }
-    else if(0==strcmp(argv[i],"-fg"){
+    else if(0==strcmp(argv[i],"-fg")){
       fg=atoi(argv[i+1]);
     }
-    else if(0==strcmp(argv[i],"-bh"){
+    else if(0==strcmp(argv[i],"-bh")){
       bh=atoi(argv[i+1]);
     }
   }
@@ -89,50 +89,21 @@ int main(int argc, char *argv[])
 	double twin=*(*(h+r)+c);
         #pragma critical
 	{
-          printf("hello from %i\n",omp_get_thread_num());
 	  *(*(g+r)+c)=0.25*(left+right+up+down);
 	}
         double self=*(*(g+r)+c);
         if((self*self - twin*twin) > eps){
 	  converged=false;
 	}
-	/*
-	printf("r is %i\n",r);
-	printf("c is %i\n",c);
-	printf("left is %f\n",left);
-        printf("right is %f\n",right);
-        printf("up is %f\n",up);
-        printf("down is %f\n",down);
-	printf("twin is %f\n",twin);
-	*/
       }
     }
-  printf("--------------before--------------------------------------\n");
-  printf("g\n");
-  output(g,nx,ny);
-  printf("h\n");
-  output(h,nx,ny);
     double** temp=g;
     g=h;
     h=temp;
-  printf("--------------after-------------------------------------\n");
-  printf("g\n");
+  }
+  
   output(g,nx,ny);
-  printf("h\n");
-  output(h,nx,ny);
-    
-  }
-
-
-  //omp_set_num_threads(4);
-  #pragma omp parallel
-  { 
-    #pragma omp critical
-    {
-      cout << "hello, world from " << omp_get_thread_num() << endl;
-    }
-  }
-
+  
   for(int row_num=0;row_num<ny;row_num++){
     free(*(g+row_num));
     free(*(h+row_num));
@@ -145,9 +116,9 @@ int main(int argc, char *argv[])
 void output(double** array,int nx,int ny){
   for(int row_num=0;row_num<ny;row_num++){
     for(int col_num=0;col_num<nx;col_num++){
-      cout << *(*(array+row_num)+col_num) << " ";
+      cout << row_num << "," << col_num << "," << *(*(array+row_num)+col_num) << endl; //" ";
     }
-    cout << endl;
+    //cout << endl;
   }
 }
 
