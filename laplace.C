@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
   while(converged==false){
     converged=true;
     //calculating base
-    //#pragma omp parallel for
+    #pragma omp parallel for
       for(int row_num=1;row_num<base_height;row_num++){
         for(int col_num=1;col_num<(nx-1);col_num++){
 	  int r = row_num;
@@ -104,11 +104,14 @@ int main(int argc, char *argv[])
 	  double up=*(*(h+(r-1))+c);
 	  double down=*(*(h+(r+1))+c);
 	  double twin=*(*(h+r)+c);
-          //#pragma critical
+          #pragma critical
 	  {
 	    *(*(g+r)+c)=0.25*(left+right+up+down);
-            double self=*(*(g+r)+c);
-            if((self*self - twin*twin) > eps){
+	  }
+          double self=*(*(g+r)+c);
+          if((self*self - twin*twin) > eps){
+	    #pragma critical
+	    {
 	      converged=false;
 	    }
 	  }
@@ -116,7 +119,7 @@ int main(int argc, char *argv[])
       }
     //calculating fins
     for(int fin=0;fin<num_fins;fin++){
-      //#pragma omp parallel for
+      #pragma omp parallel for
       for(int row_num=base_height;row_num<(ny-1);row_num++){
         for(int col_num=fx_total*fin+1;col_num<(fx_total*fin+fx-1);col_num++){
 	  int r = row_num;
@@ -126,11 +129,14 @@ int main(int argc, char *argv[])
 	  double up=*(*(h+(r-1))+c);
 	  double down=*(*(h+(r+1))+c);
 	  double twin=*(*(h+r)+c);
-          //#pragma critical
+          #pragma critical
 	  {
 	    *(*(g+r)+c)=0.25*(left+right+up+down);
-            double self=*(*(g+r)+c);
-            if((self*self - twin*twin) > eps){
+	  }
+          double self=*(*(g+r)+c);
+          if((self*self - twin*twin) > eps){
+	    #pragma critical
+            {
 	      converged=false;
 	    }
 	  }
