@@ -5,4 +5,46 @@ CIS 455/555
 
 Project 3: Laplace
 
--- it seems we may want additional R packages installed on ACISS to enable 3d visualization
+----------------------------------------------------------
+Write a short description of what you did for this project
+----------------------------------------------------------
+For this project I used the pseudo code in the textbook to write a parallelized program that calculates the heat flow of a 2D heat sink.
+The program takes the below arguments:
+
+nx  - number of points, x dimension
+ny  - number of points, y dimension
+eps - epsilon (stopping condition)
+fx  - fin width (x dimension)
+fy  - fin length (y dimension)
+fg  - gap between adjacent fins
+
+*Note: a "fin" is a vertical protrusion that is attached to a "base"…
+
+The arguments should make logical sense for the best graphical results. For example, the base should be wide enough to fit at least one fin on it. An example of a logical set of arguments is below:
+
+-nx 330 -ny 70 -eps 0.05 -fx 30 -fy 55 -fg 30
+
+This will create a heat sink that is 330 points wide and 70 points tall. The epsilon value will be 0.05. Each fin will be 30 points wide and 55 points tall. The gap between fins will be 30 points. With these parameters, the program will create a heat sink with a base 15 points high and place 6 fins on it (see source code for details).
+
+*Note: For best graphical results, epsilon's size should be indirectly related to the number of points in the heat sink (more points = smaller epsilon).
+
+--------------------------------------------------
+anything interesting or unusual about your program
+--------------------------------------------------
++The "laplace.C" program models heat flow for a 2D heat sink with fins.
++The "laplace.C" program outputs its model in a format that is digestible by ParaView (see included screenshot).
++The "laplace_plot.sh" script will assist with execution of the binary and visualization of results (see script for usage).
+
+-------------------------------------------
+how you tested each version of your program
+-------------------------------------------
++The first sequential version of my program modeled heat flow in a 2D plate. I confirmed correct results with a small grid (10 x 10).
++I parallelized the first sequential version and again confirmed results with a small grid (10 x 10).
++I came up with an R script that produced a plot from the program output. I used this script to test the parallelized version with larger grids (500 x 500).
++I wrote a sequential version of the program that modeled a 2D heat sink and tested it with my R script.
++I parallelized the program and tested it with my R script.
+
+---------------------------------------------------------------------------------------
+include plots (or R or Matlab commands to generate plots so I can plot the data myself)
+---------------------------------------------------------------------------------------
+The "laplace_plot.sh" script is included.

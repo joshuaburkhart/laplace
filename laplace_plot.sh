@@ -1,6 +1,7 @@
 #!/bin/bash
+#This script passes arguments to a binary, generates a pdf, and launches evince
 #Usage:
-#./laplace_plot.sh 200 200 .05 9 1 1 1
+#./laplace_plot.sh 230 100 .05 30 90 10
 NX=${1:-330}
 NY=${2:-70}
 EPS=${3:-0.05}
