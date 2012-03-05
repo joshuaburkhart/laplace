@@ -18,3 +18,4 @@ plot(A[,2],A[,1],col=A[,3],xlab="X",ylab="Y",main="Laplace Project",pch=" ")
 points(A[,2],A[,1],col=A[,3])
 quit("no")
 EOT
+evince "./Rplots.pdf"
