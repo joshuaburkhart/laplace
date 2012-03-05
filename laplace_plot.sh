@@ -13,10 +13,16 @@ FX=${4:-30}
 FY=${5:-55}
 FG=${6:-30}
 
+echo -e "\n\n\n"
+echo "Attempting to create output directory..."
 mkdir ./out
 
+echo -e "\n"
+echo "Executing binary..."
 ./bin/laplace -nx $NX -ny $NY -eps $EPS -fx $FX -fy $FY -fg $FG > "./out/output.csv"
 
+echo -e "\n"
+echo "Using R to create PDF document..."
 R --no-save << EOT
 A = scan(file="./out/output.csv",sep=",")
 A = matrix(A,ncol=($NX*$NY),nrow=3)
@@ -29,4 +35,6 @@ quit("no")
 EOT
 
 #if evince is not installed, use another program to open Rplots.pdf
+echo -e "\n"
+echo "Attempting to use evince program to view PDF document..."
 evince "./Rplots.pdf"
