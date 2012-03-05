@@ -11,6 +11,7 @@ using std::endl;
 #include <stdio.h>
 #include <omp.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define HI_TEMP 100.0
 #define LO_TEMP 0.0
