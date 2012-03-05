@@ -53,9 +53,9 @@ int main(int argc, char *argv[])
   int fx_total   = fx+fg;
   int base_height= ny-fy;
   int num_fins   = nx/fx_total;
-
-  if(num_fins % 2 != 0){
-    num_fins++; //place another fin on the base ... if it will fit
+  int extra_space = nx-num_fins*fx_total;
+  if(extra_space>=fx){
+	  num_fins++;//place an extra fin on if it will fit
   }
 
   /*
