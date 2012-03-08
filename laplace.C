@@ -58,18 +58,6 @@ int main(int argc, char *argv[])
 	  num_fins++;//place an extra fin on if it will fit
   }
 
-  /*
-  printf("nx is %i\n",nx);
-  printf("ny is %i\n",ny);
-  printf("eps is %f\n",eps);
-  printf("fx is %i\n",fx);
-  printf("fy is %i\n",fy);
-  printf("fg is %i\n",fg);
-  printf("fx_total is %i\n",fx_total);
-  printf("num_fins is %i\n",num_fins);
-  printf("base_height is %i\n",base_height);
-  */
-
   double **g,**h; //we will read from h and operate on g
   g = (double **) malloc(ny*sizeof(double*));
   h = (double **) malloc(ny*sizeof(double*));
@@ -105,10 +93,7 @@ int main(int argc, char *argv[])
 	  double up=*(*(h+(r-1))+c);
 	  double down=*(*(h+(r+1))+c);
 	  double twin=*(*(h+r)+c);
-          #pragma critical
-	  {
-	    *(*(g+r)+c)=0.25*(left+right+up+down);
-	  }
+	  *(*(g+r)+c)=0.25*(left+right+up+down);
           double self=*(*(g+r)+c);
           if((self*self - twin*twin) > eps){
 	    #pragma critical
@@ -130,10 +115,7 @@ int main(int argc, char *argv[])
 	  double up=*(*(h+(r-1))+c);
 	  double down=*(*(h+(r+1))+c);
 	  double twin=*(*(h+r)+c);
-          #pragma critical
-	  {
-	    *(*(g+r)+c)=0.25*(left+right+up+down);
-	  }
+	  *(*(g+r)+c)=0.25*(left+right+up+down);
           double self=*(*(g+r)+c);
           if((self*self - twin*twin) > eps){
 	    #pragma critical
