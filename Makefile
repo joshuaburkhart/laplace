@@ -10,7 +10,7 @@ LIBS =
 laplace:	laplace.o $(OBJS)
 		$(LINK.cc) -o ./bin/laplace laplace.o $(LIBS)
 
-laplace.o:	laplace.C 
+laplace.o:	laplace.c 
 
 clean:
 	rm -rf core *.o *~
